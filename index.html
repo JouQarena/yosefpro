@@ -44,6 +44,10 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
+        html[dir="rtl"] body {
+            font-family: 'Inter', sans-serif; /* You could use an Arabic font here if needed */
+        }
+
         .glass {
             background: var(--glass-bg);
             backdrop-filter: blur(12px);
@@ -166,6 +170,10 @@
 
         .project-card:hover .btn-project { transform: translateY(0); opacity: 1; }
         .btn-project { transform: translateY(10px); opacity: 0; transition: all 0.3s ease; }
+
+        /* RTL Adjustments */
+        html[dir="rtl"] .reveal { transform: translateY(30px); }
+        html[dir="rtl"] .hero-img-container::after { right: -8px; left: auto; }
     </style>
 </head>
 <body data-theme="dark">
@@ -181,19 +189,25 @@
             <a href="#" class="text-2xl font-bold gradient-text">YM</a>
             
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#about" class="nav-link text-sm font-medium hover:text-main transition text-dim">About</a>
-                <a href="#skills" class="nav-link text-sm font-medium hover:text-main transition text-dim">Skills</a>
-                <a href="#projects" class="nav-link text-sm font-medium hover:text-main transition text-dim">Projects</a>
-                <a href="#services" class="nav-link text-sm font-medium hover:text-main transition text-dim">Services</a>
+                <a href="#about" class="nav-link text-sm font-medium hover:text-main transition text-dim" data-i18n="nav-about">About</a>
+                <a href="#skills" class="nav-link text-sm font-medium hover:text-main transition text-dim" data-i18n="nav-skills">Skills</a>
+                <a href="#projects" class="nav-link text-sm font-medium hover:text-main transition text-dim" data-i18n="nav-projects">Projects</a>
+                <a href="#services" class="nav-link text-sm font-medium hover:text-main transition text-dim" data-i18n="nav-services">Services</a>
                 
-                <button id="theme-toggle" class="p-2.5 rounded-xl border border-main hover:bg-white/10 transition cursor-pointer">
-                    <i class="fa-solid fa-moon text-lg" id="theme-icon"></i>
-                </button>
+                <div class="flex items-center gap-2 border-l border-main ps-8 ms-4 rtl:border-l-0 rtl:border-r rtl:ps-0 rtl:pe-8 rtl:ms-0 rtl:me-4">
+                    <button id="lang-toggle" class="px-3 py-1.5 rounded-lg border border-main text-xs font-bold text-main hover:bg-white/10 transition cursor-pointer">
+                        AR
+                    </button>
+                    <button id="theme-toggle" class="p-2.5 rounded-xl border border-main hover:bg-white/10 transition cursor-pointer">
+                        <i class="fa-solid fa-moon text-lg" id="theme-icon"></i>
+                    </button>
+                </div>
 
-                <a href="#contact" class="px-6 py-2.5 rounded-full gradient-bg text-white text-sm font-bold hover:opacity-90 transition shadow-lg shadow-purple-500/20">Contact</a>
+                <a href="#contact" class="px-6 py-2.5 rounded-full gradient-bg text-white text-sm font-bold hover:opacity-90 transition shadow-lg shadow-purple-500/20" data-i18n="nav-contact-btn">Contact</a>
             </div>
 
             <div class="flex items-center gap-4 md:hidden">
+                <button id="lang-toggle-mobile" class="px-3 py-1 rounded-lg border border-main text-xs font-bold text-main">AR</button>
                 <button id="theme-toggle-mobile" class="p-2 rounded-lg border border-main text-main">
                     <i class="fa-solid fa-moon text-lg" id="theme-icon-mobile"></i>
                 </button>
@@ -204,35 +218,35 @@
         </div>
         
         <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full glass border-b border-main py-6 px-6 flex flex-col space-y-4">
-            <a href="#about" class="text-lg font-medium text-main">About</a>
-            <a href="#skills" class="text-lg font-medium text-main">Skills</a>
-            <a href="#projects" class="text-lg font-medium text-main">Projects</a>
-            <a href="#services" class="text-lg font-medium text-main">Services</a>
-            <a href="#contact" class="text-lg font-bold gradient-text">Contact Me</a>
+            <a href="#about" class="text-lg font-medium text-main" data-i18n="nav-about">About</a>
+            <a href="#skills" class="text-lg font-medium text-main" data-i18n="nav-skills">Skills</a>
+            <a href="#projects" class="text-lg font-medium text-main" data-i18n="nav-projects">Projects</a>
+            <a href="#services" class="text-lg font-medium text-main" data-i18n="nav-services">Services</a>
+            <a href="#contact" class="text-lg font-bold gradient-text" data-i18n="nav-contact-btn">Contact Me</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
         <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
-            <div class="order-2 md:order-1 text-center md:text-left">
-                <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass border border-main text-xs font-bold tracking-widest text-purple-500 uppercase reveal">
+            <div class="order-2 md:order-1 text-center md:text-left rtl:md:text-right">
+                <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass border border-main text-xs font-bold tracking-widest text-purple-500 uppercase reveal" data-i18n="hero-tag">
                     Full Stack Developer
                 </div>
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tighter reveal text-main" style="transition-delay: 200ms;">
-                    Youssef <br><span class="gradient-text">Mahmoud</span>
+                    <span data-i18n="hero-name-1">Youssef</span> <br><span class="gradient-text" data-i18n="hero-name-2">Mahmoud</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-dim mb-8 font-medium reveal" style="transition-delay: 400ms;">
+                <p class="text-xl md:text-2xl text-dim mb-8 font-medium reveal" style="transition-delay: 400ms;" data-i18n="hero-title">
                     Python Specialist & UI/UX Architect
                 </p>
-                <p class="max-w-xl text-lg text-dim mb-10 leading-relaxed reveal mx-auto md:mx-0" style="transition-delay: 600ms;">
+                <p class="max-w-xl text-lg text-dim mb-10 leading-relaxed reveal mx-auto md:mx-0" style="transition-delay: 600ms;" data-i18n="hero-desc">
                     I build scalable web applications using Python and modern web technologies. Focused on high-performance solutions and clean user interfaces.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 reveal" style="transition-delay: 800ms;">
-                    <a href="#projects" class="w-full sm:w-auto px-10 py-4 rounded-2xl gradient-bg text-white font-bold hover:scale-105 transition shadow-2xl shadow-purple-500/40 text-center">
+                    <a href="#projects" class="w-full sm:w-auto px-10 py-4 rounded-2xl gradient-bg text-white font-bold hover:scale-105 transition shadow-2xl shadow-purple-500/40 text-center" data-i18n="hero-btn-projects">
                         View Projects
                     </a>
-                    <a href="#contact" class="w-full sm:w-auto px-10 py-4 rounded-2xl glass border border-main font-bold hover:bg-white/10 transition text-main text-center">
+                    <a href="#contact" class="w-full sm:w-auto px-10 py-4 rounded-2xl glass border border-main font-bold hover:bg-white/10 transition text-main text-center" data-i18n="hero-btn-contact">
                         Contact Me
                     </a>
                 </div>
@@ -248,14 +262,159 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+                    <div class="relative rounded-3xl overflow-hidden glass border border-main shadow-2xl ltr:dir-ltr">
+                        <!-- Code Header -->
+                        <div class="bg-white/5 border-b border-main px-6 py-4 flex items-center gap-2">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                            </div>
+                            <div class="text-[10px] font-mono text-dim ml-2 tracking-widest uppercase">developer_bio.py</div>
+                        </div>
+                        <!-- Code Body -->
+                        <div class="p-8 font-mono text-sm leading-relaxed text-left" dir="ltr">
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">1</span>
+                                <p><span class="text-purple-400">class</span> <span class="text-blue-400">Developer</span>:</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">2</span>
+                                <p class="pl-4"><span class="text-purple-400">def</span> <span class="text-blue-400">__init__</span>(self):</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">3</span>
+                                <p class="pl-8">self.name = <span class="text-emerald-400">"Youssef Mahmoud"</span></p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">4</span>
+                                <p class="pl-8">self.role = <span class="text-emerald-400">"Full Stack"</span></p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">5</span>
+                                <p class="pl-8">self.focus = <span class="text-emerald-400">"Python & UX"</span></p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">6</span>
+                                <p></p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">7</span>
+                                <p class="pl-4"><span class="text-purple-400">def</span> <span class="text-blue-400">is_available</span>(self):</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="text-dim/30 select-none">8</span>
+                                <p class="pl-8"><span class="text-purple-400">return</span> <span class="text-orange-400">True</span></p>
+                            </div>
+                            <div class="mt-6 flex gap-4">
+                                <span class="text-dim/30 select-none">9</span>
+                                <p><span class="text-dim"># Clean Code. Scalable Systems.</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4" data-i18n="about-tag">Background</h2>
+                <h3 class="text-4xl font-bold mb-6 text-main" data-i18n="about-title">Passion for <span class="gradient-text">Clean Code</span></h3>
+                <p class="text-lg text-dim mb-8 leading-relaxed" data-i18n="about-p1">
+                    I am a Python Full Stack Developer with a strong foundation in computer science (CS50). I specialize in building full web applications from backend logic using Python to responsive frontend interfaces using HTML, CSS, and JavaScript. 
+                </p>
+                <p class="text-lg text-dim mb-8 leading-relaxed" data-i18n="about-p2">
+                    I use modern AI-powered development workflows to increase efficiency and deliver high-quality results quickly. Currently focused on freelancing and building scalable real-world projects.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 rounded-2xl glass border border-main">
+                        <div class="text-3xl font-black gradient-text mb-1">100%</div>
+                        <div class="text-xs font-bold text-dim uppercase tracking-tighter" data-i18n="about-stat1">Reliability</div>
+                    </div>
+                    <div class="p-6 rounded-2xl glass border border-main">
+                        <div class="text-3xl font-black gradient-text mb-1">AI+</div>
+                        <div class="text-xs font-bold text-dim uppercase tracking-tighter" data-i18n="about-stat2">Efficiency</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 px-6 bg-alt transition-colors duration-400">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4" data-i18n="skills-tag">Core Stack</h2>
+                <h3 class="text-4xl font-bold text-main" data-i18n="skills-title">Technical <span class="gradient-text">Mastery</span></h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Frontend -->
+                <div class="p-8 rounded-3xl glass border border-main hover:border-purple-500/30 transition-all duration-500 reveal">
+                    <div class="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mb-8 shadow-lg shadow-purple-500/20">
+                        <i class="fa-solid fa-layer-group text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="skill-fe">Frontend</h4>
+                    <ul class="space-y-3 text-dim">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-purple-500 text-xs"></i> HTML5 / CSS3</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-purple-500 text-xs"></i> JavaScript (ES6+)</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-purple-500 text-xs"></i> Tailwind CSS</li>
+                    </ul>
+                </div>
+
+                <!-- Backend -->
+                <div class="p-8 rounded-3xl glass border border-main hover:border-blue-500/30 transition-all duration-500 reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20">
+                        <i class="fa-brands fa-python text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="skill-be">Backend</h4>
+                    <ul class="space-y-3 text-dim">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-500 text-xs"></i> Python</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-500 text-xs"></i> Django Framework</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-blue-500 text-xs"></i> RESTful APIs</li>
+                    </ul>
+                </div>
+
+                <!-- Database -->
+                <div class="p-8 rounded-3xl glass border border-main hover:border-indigo-500/30 transition-all duration-500 reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center mb-8 shadow-lg shadow-indigo-500/20">
+                        <i class="fa-solid fa-database text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="skill-db">Database</h4>
+                    <ul class="space-y-3 text-dim">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-500 text-xs"></i> PostgreSQL</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-500 text-xs"></i> SQLite</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-500 text-xs"></i> Data Modeling</li>
+                    </ul>
+                </div>
+
+                <!-- Tools -->
+                <div class="p-8 rounded-3xl glass border border-main hover:border-cyan-500/30 transition-all duration-500 reveal" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-600 flex items-center justify-center mb-8 shadow-lg shadow-cyan-500/20">
+                        <i class="fa-solid fa-screwdriver-wrench text-white text-xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="skill-tools">Tools</h4>
+                    <ul class="space-y-3 text-dim">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-500 text-xs"></i> Git / GitHub</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-500 text-xs"></i> Docker / Vercel</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-cyan-500 text-xs"></i> AI Workflow</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 reveal">
             <div>
-                <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4">Portfolio Gallery</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-main">Selected <span class="gradient-text">Works</span></h3>
+                <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4" data-i18n="projects-tag">Portfolio Gallery</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-main" data-i18n="projects-title">Selected <span class="gradient-text">Works</span></h3>
             </div>
-            <p class="text-dim max-w-md leading-relaxed">
+            <p class="text-dim max-w-md leading-relaxed" data-i18n="projects-desc">
                 Explore my latest projects, from full-stack platforms to elegant frontend experiences.
             </p>
         </div>
@@ -267,7 +426,7 @@
                     <div class="aspect-video w-full overflow-hidden relative">
                         <img src="arena.png" alt="ArenaQ" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800'">
                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <button class="btn-project px-8 py-3.5 rounded-xl gradient-bg text-white font-bold">View Project Details</button>
+                            <button class="btn-project px-8 py-3.5 rounded-xl gradient-bg text-white font-bold" data-i18n="project-view-details">View Project Details</button>
                         </div>
                     </div>
                     <div class="p-10">
@@ -276,11 +435,11 @@
                             <span class="px-4 py-1.5 text-[10px] font-black glass border border-main rounded-full text-blue-500 uppercase">Django</span>
                             <span class="px-4 py-1.5 text-[10px] font-black glass border border-main rounded-full text-cyan-500 uppercase">PostgreSQL</span>
                         </div>
-                        <h4 class="text-3xl font-bold mb-4 text-main">Arena tracker Platform</h4>
-                        <p class="text-dim mb-8 leading-relaxed line-clamp-2">A high-performance gaming platform with real-time features and secure architecture.</p>
+                        <h4 class="text-3xl font-bold mb-4 text-main" data-i18n="project-1-title">ArenaQ Platform</h4>
+                        <p class="text-dim mb-8 leading-relaxed line-clamp-2" data-i18n="project-1-desc">A high-performance gaming platform with real-time features and secure architecture.</p>
                         <div class="flex items-center justify-between group/link">
-                            <span class="text-sm font-bold gradient-text">Case Study Details</span>
-                            <i class="fa-solid fa-arrow-right text-purple-500 transition-transform group-hover/link:translate-x-2"></i>
+                            <span class="text-sm font-bold gradient-text" data-i18n="project-case-study">Case Study Details</span>
+                            <i class="fa-solid fa-arrow-right text-purple-500 transition-transform group-hover/link:translate-x-2 rtl:rotate-180 rtl:group-hover/link:-translate-x-2"></i>
                         </div>
                     </div>
                 </div>
@@ -292,7 +451,7 @@
                     <div class="aspect-video w-full overflow-hidden relative">
                         <img src="sara-dolls.png" alt="Sara Dolls" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800'">
                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <button class="btn-project px-8 py-3.5 rounded-xl gradient-bg text-white font-bold">View Project Details</button>
+                            <button class="btn-project px-8 py-3.5 rounded-xl gradient-bg text-white font-bold" data-i18n="project-view-details">View Project Details</button>
                         </div>
                     </div>
                     <div class="p-10">
@@ -301,11 +460,11 @@
                             <span class="px-4 py-1.5 text-[10px] font-black glass border border-main rounded-full text-indigo-500 uppercase">Frontend</span>
                             <span class="px-4 py-1.5 text-[10px] font-black glass border border-main rounded-full text-emerald-500 uppercase">Responsive</span>
                         </div>
-                        <h4 class="text-3xl font-bold mb-4 text-main">Sara Dolls</h4>
-                        <p class="text-dim mb-8 leading-relaxed line-clamp-2">A luxury e-commerce experience designed with focus on clean layouts and smooth interactions.</p>
+                        <h4 class="text-3xl font-bold mb-4 text-main" data-i18n="project-2-title">Sara Dolls</h4>
+                        <p class="text-dim mb-8 leading-relaxed line-clamp-2" data-i18n="project-2-desc">A luxury e-commerce experience designed with focus on clean layouts and smooth interactions.</p>
                         <div class="flex items-center justify-between group/link">
-                            <span class="text-sm font-bold gradient-text">Case Study Details</span>
-                            <i class="fa-solid fa-arrow-right text-purple-500 transition-transform group-hover/link:translate-x-2"></i>
+                            <span class="text-sm font-bold gradient-text" data-i18n="project-case-study">Case Study Details</span>
+                            <i class="fa-solid fa-arrow-right text-purple-500 transition-transform group-hover/link:translate-x-2 rtl:rotate-180 rtl:group-hover/link:-translate-x-2"></i>
                         </div>
                     </div>
                 </div>
@@ -317,8 +476,8 @@
     <section id="services" class="py-32 px-6 bg-alt transition-colors duration-400">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20 reveal">
-                <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4">My Services</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-main">Digital <span class="gradient-text">Solutions</span></h3>
+                <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4" data-i18n="services-tag">My Services</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-main" data-i18n="services-title">Digital <span class="gradient-text">Solutions</span></h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -326,22 +485,22 @@
                     <div class="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-8">
                         <i class="fa-solid fa-code text-3xl text-purple-500"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-4 text-main">Custom Web Apps</h4>
-                    <p class="text-dim leading-relaxed">Full-cycle development from database design to frontend implementation using Python & Django.</p>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="service-1-title">Custom Web Apps</h4>
+                    <p class="text-dim leading-relaxed" data-i18n="service-1-desc">Full-cycle development from database design to frontend implementation using Python & Django.</p>
                 </div>
                 <div class="p-12 rounded-[2rem] glass border border-main hover:bg-white/5 transition-all duration-500 reveal" style="transition-delay: 100ms;">
                     <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-8">
                         <i class="fa-solid fa-cart-shopping text-3xl text-blue-500"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-4 text-main">E-commerce Solutions</h4>
-                    <p class="text-dim leading-relaxed">Optimized online shopping platforms designed for high conversion and premium user experience.</p>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="service-2-title">E-commerce Solutions</h4>
+                    <p class="text-dim leading-relaxed" data-i18n="service-2-desc">Optimized online shopping platforms designed for high conversion and premium user experience.</p>
                 </div>
                 <div class="p-12 rounded-[2rem] glass border border-main hover:bg-white/5 transition-all duration-500 reveal" style="transition-delay: 200ms;">
                     <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center mb-8">
                         <i class="fa-solid fa-mobile-screen text-3xl text-indigo-500"></i>
                     </div>
-                    <h4 class="text-xl font-bold mb-4 text-main">Responsive UI/UX</h4>
-                    <p class="text-dim leading-relaxed">Modern, fast-loading interfaces that look beautiful on desktops, tablets, and smartphones.</p>
+                    <h4 class="text-xl font-bold mb-4 text-main" data-i18n="service-3-title">Responsive UI/UX</h4>
+                    <p class="text-dim leading-relaxed" data-i18n="service-3-desc">Modern, fast-loading interfaces that look beautiful on desktops, tablets, and smartphones.</p>
                 </div>
             </div>
         </div>
@@ -364,12 +523,12 @@
                         <div id="modal-tags" class="flex flex-wrap gap-2"></div>
                     </div>
                     <div class="space-y-4">
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-purple-500">Overview</h4>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-purple-500" data-i18n="modal-overview">Overview</h4>
                         <p id="modal-desc" class="text-dim leading-relaxed text-lg"></p>
                     </div>
                     <div class="pt-8 border-t border-main flex flex-col sm:flex-row gap-4">
-                        <a id="modal-link" href="#" target="_blank" class="px-10 py-4 rounded-2xl gradient-bg text-white font-bold flex-1 text-center hover:scale-[1.03] transition shadow-lg shadow-purple-500/20">Live Demo</a>
-                        <a id="modal-github" href="#" target="_blank" class="px-10 py-4 rounded-2xl glass border border-main text-main font-bold flex-1 text-center hover:bg-white/10 transition">View Code</a>
+                        <a id="modal-link" href="#" target="_blank" class="px-10 py-4 rounded-2xl gradient-bg text-white font-bold flex-1 text-center hover:scale-[1.03] transition shadow-lg shadow-purple-500/20" data-i18n="modal-btn-demo">Live Demo</a>
+                        <a id="modal-github" href="#" target="_blank" class="px-10 py-4 rounded-2xl glass border border-main text-main font-bold flex-1 text-center hover:bg-white/10 transition" data-i18n="modal-btn-code">View Code</a>
                     </div>
                 </div>
             </div>
@@ -379,24 +538,24 @@
     <!-- Contact & Footer -->
     <section id="contact" class="py-32 px-6 max-w-7xl mx-auto">
         <div class="text-center mb-20 reveal">
-            <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4">Start a Conversation</h2>
-            <h3 class="text-4xl md:text-6xl font-black text-main">Let's build <span class="gradient-text">together</span></h3>
+            <h2 class="text-sm font-bold tracking-widest text-purple-500 uppercase mb-4" data-i18n="contact-tag">Start a Conversation</h2>
+            <h3 class="text-4xl md:text-6xl font-black text-main" data-i18n="contact-title">Let's build <span class="gradient-text">together</span></h3>
         </div>
         
         <div class="grid lg:grid-cols-3 gap-8">
             <a href="mailto:yosefma993@gmail.com" class="p-10 rounded-3xl glass border border-main text-center group transition-all duration-500 hover:scale-105 reveal">
                 <i class="fa-solid fa-envelope text-4xl text-purple-500 mb-6 group-hover:scale-110 transition"></i>
-                <p class="text-dim text-sm uppercase font-bold tracking-widest mb-2">Email</p>
+                <p class="text-dim text-sm uppercase font-bold tracking-widest mb-2" data-i18n="contact-email">Email</p>
                 <p class="text-main font-bold">yosefma993@gmail.com</p>
             </a>
             <a href="https://wa.me/201157514941" target="_blank" class="p-10 rounded-3xl glass border border-main text-center group transition-all duration-500 hover:scale-105 reveal" style="transition-delay: 100ms;">
                 <i class="fa-brands fa-whatsapp text-4xl text-green-500 mb-6 group-hover:scale-110 transition"></i>
-                <p class="text-dim text-sm uppercase font-bold tracking-widest mb-2">WhatsApp</p>
+                <p class="text-dim text-sm uppercase font-bold tracking-widest mb-2" data-i18n="contact-whatsapp">WhatsApp</p>
                 <p class="text-main font-bold">01157514941</p>
             </a>
             <a href="https://github.com/JouQarena" target="_blank" class="p-10 rounded-3xl glass border border-main text-center group transition-all duration-500 hover:scale-105 reveal" style="transition-delay: 200ms;">
                 <i class="fa-brands fa-github text-4xl text-main mb-6 group-hover:scale-110 transition"></i>
-                <p class="text-dim text-sm uppercase font-bold tracking-widest mb-2">GitHub</p>
+                <p class="text-dim text-sm uppercase font-bold tracking-widest mb-2" data-i18n="contact-github">GitHub</p>
                 <p class="text-main font-bold">JouQarena</p>
             </a>
         </div>
@@ -404,11 +563,118 @@
 
     <footer class="py-20 border-t border-main text-center px-6">
         <div class="max-w-7xl mx-auto">
-            <p class="text-dim font-medium">© 2026 Youssef Mahmoud. Built with Passion & Python.</p>
+            <p class="text-dim font-medium" data-i18n="footer-p">© 2026 Youssef Mahmoud. Built with Passion & Python.</p>
         </div>
     </footer>
 
     <script>
+        const translations = {
+            en: {
+                "nav-about": "About",
+                "nav-skills": "Skills",
+                "nav-projects": "Projects",
+                "nav-services": "Services",
+                "nav-contact-btn": "Contact",
+                "hero-tag": "Full Stack Developer",
+                "hero-name-1": "Youssef",
+                "hero-name-2": "Mahmoud",
+                "hero-title": "Python Specialist & UI/UX Architect",
+                "hero-desc": "I build scalable web applications using Python and modern web technologies. Focused on high-performance solutions and clean user interfaces.",
+                "hero-btn-projects": "View Projects",
+                "hero-btn-contact": "Contact Me",
+                "about-tag": "Background",
+                "about-title": "Passion for Clean Code",
+                "about-p1": "I am a Python Full Stack Developer with a strong foundation in computer science (CS50). I specialize in building full web applications from backend logic using Python to responsive frontend interfaces using HTML, CSS, and JavaScript.",
+                "about-p2": "I use modern AI-powered development workflows to increase efficiency and deliver high-quality results quickly. Currently focused on freelancing and building scalable real-world projects.",
+                "about-stat1": "Reliability",
+                "about-stat2": "Efficiency",
+                "skills-tag": "Core Stack",
+                "skills-title": "Technical Mastery",
+                "skill-fe": "Frontend",
+                "skill-be": "Backend",
+                "skill-db": "Database",
+                "skill-tools": "Tools",
+                "projects-tag": "Portfolio Gallery",
+                "projects-title": "Selected Works",
+                "projects-desc": "Explore my latest projects, from full-stack platforms to elegant frontend experiences.",
+                "project-view-details": "View Project Details",
+                "project-1-title": "ArenaQ Platform",
+                "project-1-desc": "A high-performance gaming platform with real-time features and secure architecture.",
+                "project-2-title": "Sara Dolls",
+                "project-2-desc": "A luxury e-commerce experience designed with focus on clean layouts and smooth interactions.",
+                "project-case-study": "Case Study Details",
+                "services-tag": "My Services",
+                "services-title": "Digital Solutions",
+                "service-1-title": "Custom Web Apps",
+                "service-1-desc": "Full-cycle development from database design to frontend implementation using Python & Django.",
+                "service-2-title": "E-commerce Solutions",
+                "service-2-desc": "Optimized online shopping platforms designed for high conversion and premium user experience.",
+                "service-3-title": "Responsive UI/UX",
+                "service-3-desc": "Modern, fast-loading interfaces that look beautiful on desktops, tablets, and smartphones.",
+                "modal-overview": "Overview",
+                "modal-btn-demo": "Live Demo",
+                "modal-btn-code": "View Code",
+                "contact-tag": "Start a Conversation",
+                "contact-title": "Let's build together",
+                "contact-email": "Email",
+                "contact-whatsapp": "WhatsApp",
+                "contact-github": "GitHub",
+                "footer-p": "© 2026 Youssef Mahmoud. Built with Passion & Python."
+            },
+            ar: {
+                "nav-about": "عني",
+                "nav-skills": "مهاراتي",
+                "nav-projects": "أعمالي",
+                "nav-services": "خدماتي",
+                "nav-contact-btn": "تواصل معي",
+                "hero-tag": "مطور ويب متكامل",
+                "hero-name-1": "يوسف",
+                "hero-name-2": "محمود",
+                "hero-title": "أخصائي بايثون ومصمم واجهات مستخدم",
+                "hero-desc": "أقوم ببناء تطبيقات ويب قابلة للتوسع باستخدام بايثون وأحدث تقنيات الويب. أركز على الحلول عالية الأداء وواجهات المستخدم النظيفة.",
+                "hero-btn-projects": "عرض المشاريع",
+                "hero-btn-contact": "تواصل معي",
+                "about-tag": "خلفية عني",
+                "about-title": "الشغف بالكود النظيف",
+                "about-p1": "أنا مطور ويب متكامل متخصص في بايثون مع أساس قوي في علوم الحاسب (CS50). أتخصص في بناء تطبيقات ويب كاملة من منطق الواجهة الخلفية باستخدام بايثون إلى واجهات أمامية متجاوبة باستخدام تقنيات الويب الحديثة.",
+                "about-p2": "أستخدم سير عمل تطوير حديث مدعوم بالذكاء الاصطناعي لزيادة الكفاءة وتقديم نتائج عالية الجودة بسرعة. أركز حالياً على العمل الحر وبناء مشاريع حقيقية قابلة للتوسع.",
+                "about-stat1": "موثوقية",
+                "about-stat2": "كفاءة",
+                "skills-tag": "التقنيات الأساسية",
+                "skills-title": "إتقان تقني",
+                "skill-fe": "واجهة أمامية",
+                "skill-be": "واجهة خلفية",
+                "skill-db": "قواعد بيانات",
+                "skill-tools": "الأدوات",
+                "projects-tag": "معرض الأعمال",
+                "projects-title": "أعمال مختارة",
+                "projects-desc": "استكشف أحدث مشاريعي، من المنصات المتكاملة إلى تجارب الواجهة الأمامية الأنيقة.",
+                "project-view-details": "عرض تفاصيل المشروع",
+                "project-1-title": "منصة ArenaQ",
+                "project-1-desc": "منصة ألعاب عالية الأداء مع ميزات فورية وبنية آمنة.",
+                "project-2-title": "سارة دولز",
+                "project-2-desc": "تجربة تجارة إلكترونية فاخرة مصممة مع التركيز على التصميمات النظيفة والتفاعلات السلسة.",
+                "project-case-study": "تفاصيل دراسة الحالة",
+                "services-tag": "خدماتي",
+                "services-title": "حلول رقمية",
+                "service-1-title": "تطبيقات ويب مخصصة",
+                "service-1-desc": "تطوير دورة كاملة من تصميم قواعد البيانات إلى تنفيذ الواجهة الأمامية باستخدام بايثون ودجانغو.",
+                "service-2-title": "حلول التجارة الإلكترونية",
+                "service-2-desc": "منصات تسوق عبر الإنترنت محسنة مصممة لتحقيق تحويل عالٍ وتجربة مستخدم متميزة.",
+                "service-3-title": "واجهة مستخدم متجاوبة",
+                "service-3-desc": "واجهات حديثة وسريعة التحميل تبدو جميلة على أجهزة الكمبيوتر المكتبية والأجهزة اللوحية والهواتف الذكية.",
+                "modal-overview": "نظرة عامة",
+                "modal-btn-demo": "عرض مباشر",
+                "modal-btn-code": "عرض الكود",
+                "contact-tag": "ابدأ محادثة",
+                "contact-title": "لنقم بالبناء معاً",
+                "contact-email": "البريد الإلكتروني",
+                "contact-whatsapp": "واتساب",
+                "contact-github": "جيت هاب",
+                "footer-p": "© 2026 يوسف محمود. بُني بشغف وبايثون."
+            }
+        };
+
         // Theme Management
         const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
         const themeIcons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
@@ -431,6 +697,34 @@
             });
         });
 
+        // Language Management
+        const langToggles = [document.getElementById('lang-toggle'), document.getElementById('lang-toggle-mobile')];
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function updateLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            
+            langToggles.forEach(btn => btn.innerText = lang === 'en' ? 'AR' : 'EN');
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+        }
+
+        langToggles.forEach(btn => {
+            btn.addEventListener('click', () => {
+                updateLanguage(currentLang === 'en' ? 'ar' : 'en');
+            });
+        });
+
+        updateLanguage(currentLang);
+
         // Mobile Menu
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -448,19 +742,23 @@
         // Projects Data
         const projects = {
             arenaq: {
-                title: "ArenaQ Platform",
+                titleEn: "ArenaQ Platform",
+                titleAr: "منصة ArenaQ",
                 img: "arena.png",
                 fallback: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200",
-                desc: "A comprehensive gaming and competition management platform. It allows users to create profiles, and track their stats in real-time. Built with a robust Django backend and a focus on low-latency interactions.",
+                descEn: "A comprehensive gaming and competition management platform. It allows users to create profiles, join tournaments, and track their stats in real-time. Built with a robust Django backend and a focus on low-latency interactions.",
+                descAr: "منصة شاملة لإدارة الألعاب والمسابقات. تتيح للمستخدمين إنشاء ملفات شخصية والانضمام إلى البطولات وتتبع إحصائياتهم في الوقت الفعلي. بُنيت باستخدام واجهة خلفية قوية لدجانغو مع التركيز على التفاعلات منخفضة التأخير.",
                 tags: ["Python", "Django", "PostgreSQL", "Real-time", "Rest API"],
                 link: "https://arenaq.pythonanywhere.com/",
                 github: "https://github.com/JouQarena"
             },
             saradolls: {
-                title: "Sara Dolls",
+                titleEn: "Sara Dolls",
+                titleAr: "سارة دولز",
                 img: "sara-dolls.png",
                 fallback: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1200",
-                desc: "A boutique e-commerce application focusing on product storytelling. It features a high-end UI design with complex CSS grid layouts and smooth scroll animations to enhance the luxury feel of the brand.",
+                descEn: "A boutique e-commerce application focusing on product storytelling. It features a high-end UI design with complex CSS grid layouts and smooth scroll animations to enhance the luxury feel of the brand.",
+                descAr: "تطبيق تجارة إلكترونية بوتيك يركز على سرد قصص المنتجات. يتميز بتصميم واجهة مستخدم متطور مع تخطيطات شبكة CSS معقدة ورسوم متحركة سلسة للتمرير لتعزيز الشعور بالفخامة للعلامة التجارية.",
                 tags: ["HTML5", "CSS3", "JavaScript", "Responsive UI", "Vercel"],
                 link: "https://sara-dolls.vercel.app/",
                 github: "https://github.com/JouQarena"
@@ -470,8 +768,8 @@
         function openProjectModal(id) {
             const p = projects[id];
             const modal = document.getElementById('project-modal');
-            document.getElementById('modal-title').innerText = p.title;
-            document.getElementById('modal-desc').innerText = p.desc;
+            document.getElementById('modal-title').innerText = currentLang === 'en' ? p.titleEn : p.titleAr;
+            document.getElementById('modal-desc').innerText = currentLang === 'en' ? p.descEn : p.descAr;
             const img = document.getElementById('modal-img');
             img.src = p.img;
             img.onerror = () => { img.src = p.fallback; };
